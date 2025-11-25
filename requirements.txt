@@ -1,0 +1,7 @@
+python-dotenv
+langchain-tavily
+kokoro-onnx>=0.4.7
+cartesia
+gradio==5.29.1 
+gradio-client==1.10.1
+
