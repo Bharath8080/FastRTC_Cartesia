@@ -19,18 +19,13 @@ RUN apt-get update && apt-get install -y --no-install-recommends \
     && rm -rf /var/lib/apt/lists/*
 
 # Copy dependency files
-COPY pyproject.toml requirements.txt ./
+COPY requirements.txt ./
 
 # Install Python dependencies
-# First install from pyproject.toml, then additional requirements
-RUN pip install --no-cache-dir -e . && \
-    pip install --no-cache-dir -r requirements.txt
+RUN pip install --no-cache-dir -r requirements.txt
 
 # Copy application code
 COPY app.py websearch_agent.py ./
-
-# Copy .env.example as template (users should provide their own .env)
-COPY .env.example .env.example
 
 # Expose port for Gradio UI (default is 7860)
 EXPOSE 7860
