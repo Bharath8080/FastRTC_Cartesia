@@ -252,5 +252,7 @@ if __name__ == "__main__":
         logger.info("🌈 Launching with FastRTC phone interface...")
         stream.fastphone()
     else:
-        logger.info("🌈 Launching with Gradio UI...")
-        stream.ui.launch()
+        # Get port from environment variable (for cloud deployments like Render)
+        port = int(os.getenv("PORT", "7860"))
+        logger.info(f"🌈 Launching with Gradio UI on 0.0.0.0:{port}...")
+        stream.ui.launch(server_name="0.0.0.0", server_port=port)
